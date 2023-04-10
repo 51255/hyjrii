@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Conversion de date grégorienne en date hijri</title>
+  <script src="https://cdn.jsdelivr.net/npm/hijri-date/dist/hijri-date.js"></script>
+</head>
+<body>
+  <h1>Conversion de date grégorienne en date hijri</h1>
+  <form>
+    <label for="date">Entrez une date grégorienne (aaaa-mm-jj) :</label>
+    <input type="date" id="date" name="date">
+    <button type="button" onclick="convertirDate()">Convertir</button>
+  </form>
+  <p>Date hijri correspondante : <span id="resultat"></span></p>
+  
+  <script>
+    function convertirDate() {
+      var dateGregorienne = document.getElementById("date").value;
+      var dateHijri = new HijriDate(dateGregorienne);
+      var jourHijri = dateHijri.getDate();
+      var moisHijri = dateHijri.getMonthName('arabic');
+      var anneeHijri = dateHijri.getFullYear();
+      var jourSemaine = dateHijri.getDayName('arabic');
+      var dateHijriFrancais = jourSemaine + " le " + jourHijri + " " + moisHijri + " " + anneeHijri;
+      document.getElementById("resultat").innerHTML = dateHijriFrancais;
+    }
+  </script>
+</body>
+</html>
